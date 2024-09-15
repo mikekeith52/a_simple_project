@@ -16,7 +16,10 @@ def get_data(query,conn):
 		query (str): The query to execute.
 		conn (Connection): An object that can be used to run sql queries against the database you are wanting to retrieve data from.
 	"""
-	return pd.read_sql(query,conn)
+	data = pd.read_sql(query,conn) 
+
+	return data # returning this object means the results from our wrangling can then be passed to a subsequent function
+
 
 def wrangle_data(data):
 	""" This function cleans my data by pivotting it using a pandas pivot table.
@@ -35,7 +38,7 @@ def wrangle_data(data):
 		margins_name = 'Total', # what to call the total column and row
 	)
 
-	return df # returning this object means the results from our wrangling can then be passed to a subsequent function
+	return tbl # returning this object means the results from our wrangling can then be passed to a subsequent function
 
 def output_data(data,outpath):
 	""" This function saves a dataframe to Excel in a given directory of the user's choosing.
@@ -45,7 +48,7 @@ def output_data(data,outpath):
 		data (DataFrame): The data to save to Excel
 		outpath (str): The path to save the data to. Absolute and relative directory paths both accepted.
 	"""
-	data.to_excel(outpath)
+	data.to_excel(outpath) # this function returns nothing, but we don't need it to. We're done.
 
 def main():
 	""" This is the main function. It describes in which order I want which functions run. It accepts no arguments.
