@@ -48,12 +48,17 @@ def output_data(data,outpath):
 	data.to_excel(outpath)
 
 def main():
+	""" This is the main function. It describes in which order I want which functions run. It accepts no arguments.
+	"""
+
 	query = open('query.sql').read() # reads the query.sql file in your directory as a string object
 	modified_query = query.format(start = dates[0], end = dates[1]) # modifies the query by passing the start and end dates from config.py to the parts of the query that were curly bracketed in query.sql
 	# I will use the query I wrote to get my data read into memory
 	data = get_data(query = modfiied_query,conn = conn) # conn is imported on line 7 of this file
+	
 	# I use this function to clean/wrangle my raw dataset
 	wrangled_data = wrangle_data(data=data)
+	
 	# I use this function to write the results as output_data_2024-01-01-2024-01-31.xlsx in the output directory
 	output_data(data=wranged_data,outpath=f'./output/output_data_{dates[0]}-{dates[1]}.xlsx')
 
