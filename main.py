@@ -10,15 +10,18 @@ from organization_internal_utils import db_connection as conn # this is an objec
 from config import dates
 
 def get_data(query,conn):
-	""" This function retrieves data from a database using a query and databaset connection.
+	""" This function retrieves data from a database using a query and database connection.
 
 	Args:
 		query (str): The query to execute.
 		conn (Connection): An object that can be used to run sql queries against the database you are wanting to retrieve data from.
+
+	Returns:
+		(DataFrame): The results of the query stored in a pandas DataFrame.
 	"""
 	data = pd.read_sql(query,conn) 
 
-	return data # returning this object means the results from our wrangling can then be passed to a subsequent function
+	return data # returning this object means the results from our query can then be passed to a subsequent function
 
 
 def wrangle_data(data):
@@ -26,6 +29,9 @@ def wrangle_data(data):
 
 	Args:
 		data (DataFrame): The data to be wrangled.
+
+	Returns:
+		(DataFrame): The pivoted data in a pandas DataFrame.
 	"""
 
 	tbl = pd.pivot_table(
@@ -42,16 +48,20 @@ def wrangle_data(data):
 
 def output_data(data,outpath):
 	""" This function saves a dataframe to Excel in a given directory of the user's choosing.
-	Usually, I use functions like these to save the results from several pulls/wranngling/pivots to several Excel
+	Usually, I use functions like these to save the results from several pulls/wranngling/pivots to several Excel sheets.
+	I also like to automatically embed my queries in an Excel sheet so that others can audit my work.
 
 	Args:
 		data (DataFrame): The data to save to Excel
 		outpath (str): The path to save the data to. Absolute and relative directory paths both accepted.
+
+	Returns:
+		(None)
 	"""
 	data.to_excel(outpath) # this function returns nothing, but we don't need it to. We're done.
 
 def main():
-	""" This is the main function. It describes in which order I want which functions run. It accepts no arguments.
+	""" This is the main function. It describes in which order I want which functions to run. It accepts no arguments.
 	"""
 
 	query = open('query.sql').read() # reads the query.sql file in your directory as a string object

@@ -1,5 +1,5 @@
 # A simple Project
-This is an example repository to show how to manage a simple project.
+This is an example repository to show how to manage a simple Data Science project.
 
 ## Description
 This project helps you learn how a real data analytics project may be organized following good practices. A project like this helps you get results out fast and modify key parameters with minimal chance of introducing human error. It works by reading a query, pivoting the query results, and outputting the end result into an Excel file. A project like this may be considered an "ETL (Extract Transform Load)" project.
@@ -8,11 +8,11 @@ This project helps you learn how a real data analytics project may be organized 
 Here is where I would describe the intended audience of my analysis. Who needs these results and why?
 
 ## Installation Instructions
-You need to have Python installed, as well as the third-party libraries listed in the [`requirements.txt`](requirements.txt) file. You can automatically install those librarires by running `pip install -r requirements.txt` from command line.
+You need to have Python installed, as well as the third-party libraries listed in the [`requirements.txt`](requirements.txt) file. You can automatically install those librarires by running `pip install -r requirements.txt` from command line. A requirements.txt file like this is standard practice for most Python projects.
 
 ## Refresh Instructions
 1. Download the code locally to your computer.
-2. Open `config.py` and change the `dates` paramter. The first element in this tuple is the start date and the second is the end date.
+2. Open `config.py` and change the `dates` parameter. The first element in this tuple is the start date and the second is the end date.
 3. Run `python main.py` on the command line. Or import it into a Jupyter notebook (`import main`) and run it from there (`main.main()`)
 
 ## Maintenance
